@@ -1,0 +1,23 @@
+V=1
+SOURCE_DIR=src
+BUILD_DIR=build
+include $(N64_INST)/include/n64.mk
+
+N64_CXXFLAGS += -std=c++20
+
+all: hello.z64
+.PHONY: all
+
+SRCS = $(wildcard **/*.cpp)
+OBJS = $(patsubst %.cpp,%.o,$(SRCS))
+
+hello.z64: N64_ROM_TITLE="Hello World"
+
+$(BUILD_DIR)/hello.elf: $(OBJS)
+
+clean:
+	rm -f $(BUILD_DIR)/* *.z64
+	rm -f $(SOURCE_DIR)/*.d $(SOURCE_DIR)/*.o
+.PHONY: clean
+
+-include $(wildcard $(BUILD_DIR)/*.d)
