@@ -4,6 +4,7 @@
 
 #include "Vector3f.hpp"
 #include "Entity.hpp"
+#include "Inputs.hpp"
 
 Entity entities[2] = {
     { {10, 10, 0}, 10, 10, {255, 0, 0, 255} },
@@ -13,20 +14,18 @@ Entity entities[2] = {
 int main(void)
 {
     timer_init();
-    joypad_init();
+    Inputs::Init();
     display_init(RESOLUTION_320x240, DEPTH_16_BPP, 2, GAMMA_NONE, FILTERS_RESAMPLE);
     console_init();
 
     debug_init_usblog();
     console_set_debug(true);
 
-    joypad_inputs_t inputs;
-
     while(1) {
         // Update
-        joypad_poll();
+        Inputs::Update();
 
-        inputs = joypad_get_inputs(JOYPAD_PORT_1);
+        joypad_inputs_t inputs = Inputs::GetInput(1);
 
         Vector3f inputVector;
 
