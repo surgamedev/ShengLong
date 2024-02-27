@@ -17,13 +17,22 @@ int main(void)
 
     debug_init_usblog();
     console_set_debug(true);
+    surface_t zbuffer = surface_alloc(FMT_RGBA16, display_get_width(), display_get_height());
 
     game.Init();
     while(1) {
         // Update
         Engine::Inputs::Update();
         game.Update();
+
         // Render
+        surface_t *disp = display_get();
+        rdpq_attach(disp, &zbuffer);
+        gl_context_begin();
+
         game.Render();
+
+        gl_context_end();
+        rdpq_detach_show();
     }
 }

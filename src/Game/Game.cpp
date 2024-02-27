@@ -4,14 +4,10 @@ Engine::Entity entities[2] = {
     {{10, 10, 0}, 10, 10, {255, 0, 0, 255}},
     {{20, 20, 0}, 10, 10, {0, 0, 255, 255}}};
 
-surface_t zbuffer;
-
 float rotation = 0.0f;
 
 void Game::Init()
 {
-    zbuffer = surface_alloc(FMT_RGBA16, display_get_width(), display_get_height());
-
     float aspect_ratio = (float)display_get_width() / (float)display_get_height();
     float near_plane = 0.1f;
     float far_plane = 50.0f;
@@ -47,11 +43,6 @@ void Game::Update()
 
 void Game::Render()
 {
-    surface_t *disp = display_get();
-    rdpq_attach(disp, &zbuffer);
-
-    gl_context_begin();
-
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -90,7 +81,4 @@ void Game::Render()
 
     glDisable(GL_COLOR_MATERIAL);
     glPopMatrix();
-
-    gl_context_end();
-    rdpq_detach_show();
 }
