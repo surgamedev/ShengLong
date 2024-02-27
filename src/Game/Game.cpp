@@ -1,8 +1,8 @@
 #include "Game.hpp"
 
-Engine::Entity entities[2] = {
-    {{0, -1, 0}},
-    {{10, -3, 0}}
+std::array<Engine::Entity, 2> entities = {
+    Engine::Entity({0, -1, 0}),
+    Engine::Entity({10, -3, 0})
 };
 
 void Game::Init()
@@ -34,8 +34,8 @@ void Game::Init()
 
 void Game::Update()
 {
-    for (int i = 0; i < 2; i++) {
-        entities[i].Update();
+    for (Engine::Entity& entity : entities) {
+        entity.Update();
     }
 }
 
@@ -54,7 +54,7 @@ void Game::Render()
     glEnable(GL_CULL_FACE);
     glEnable(GL_TEXTURE_2D);
 
-    for (int i = 0; i < 2; i++) {
-        entities[i].Render();
+    for (const Engine::Entity& entity : entities) {
+        entity.Render();
     }
 }

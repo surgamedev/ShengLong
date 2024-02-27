@@ -72,7 +72,7 @@ namespace Engine
 
         Entity(Math::Vector3f position) : position{position} {};
 
-        void Render();
+        void Render() const;
         void Update();
     };
 }

@@ -9,7 +9,7 @@ void Entity::Update() {
     }
 }
 
-void Entity::Render()
+void Entity::Render() const
 {
     glPushMatrix();
     glTranslatef(this->position.x, this->position.y, this->position.z);
