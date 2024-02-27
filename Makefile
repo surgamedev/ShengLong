@@ -10,16 +10,15 @@ N64_CXXFLAGS += -std=c++20
 all: hello.z64
 .PHONY: all
 
-SRCS = $(wildcard $(SOURCE_DIR)/*.cpp)
-OBJS = $(patsubst $(SOURCE_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+SRCS := $(shell find $(SOURCE_DIR) -name '*.cpp')
+OBJS := $(patsubst $(SOURCE_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
 
 hello.z64: N64_ROM_TITLE="Hello World"
 
 $(BUILD_DIR)/hello.elf: $(OBJS)
 
 clean:
-	rm -f $(BUILD_DIR)/* *.z64
-	rm -f $(SOURCE_DIR)/*.d $(SOURCE_DIR)/*.o
+	rm -rf $(BUILD_DIR)/* *.z64
 .PHONY: clean
 
 -include $(wildcard $(BUILD_DIR)/*.d)

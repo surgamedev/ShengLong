@@ -1,7 +1,7 @@
 #pragma once
 
 #include <libdragon.h>
-#include "Vector3f.hpp"
+#include "Math/Vector3f.hpp"
 
 class Entity{
 public:

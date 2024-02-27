@@ -5,9 +5,9 @@
 #include <GL/glu.h>
 #include <GL/gl_integration.h>
 
-#include "Entity.hpp"
-#include "Inputs.hpp"
-#include "Vector3f.hpp"
+#include "../Engine/Entity.hpp"
+#include "../Engine/Inputs.hpp"
+#include "../Engine/Math/Vector3f.hpp"
 
 typedef struct {
     float position[3];

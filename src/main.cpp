@@ -2,7 +2,7 @@
 #include <libdragon.h>
 #include <GL/gl.h>
 
-#include "Game.hpp"
+#include "Game/Game.hpp"
 
 int main(void)
 {
