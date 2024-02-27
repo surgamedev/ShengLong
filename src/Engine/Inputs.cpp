@@ -1,5 +1,7 @@
 #include "Inputs.hpp"
 
+using namespace Engine;
+
 joypad_inputs_t Inputs::inputs[4];
 
 void Inputs::Init()

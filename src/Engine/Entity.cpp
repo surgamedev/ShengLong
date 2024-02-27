@@ -1,5 +1,7 @@
 #include "Entity.hpp"
 
+using namespace Engine;
+
 void Entity::Render(surface_t *disp)
 {
     uint32_t color = graphics_convert_color(this->color);

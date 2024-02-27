@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Entity entities[2] = {
+Engine::Entity entities[2] = {
     {{10, 10, 0}, 10, 10, {255, 0, 0, 255}},
     {{20, 20, 0}, 10, 10, {0, 0, 255, 255}}};
 

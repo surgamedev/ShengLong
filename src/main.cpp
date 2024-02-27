@@ -6,11 +6,11 @@
 
 int main(void)
 {
-    Game game;
     timer_init();
-    Inputs::Init();
+    Engine::Inputs::Init();
     display_init(RESOLUTION_320x240, DEPTH_16_BPP, 2, GAMMA_NONE, FILTERS_RESAMPLE);
     console_init();
+    Game game;
 
     rdpq_init();
     gl_init();
@@ -21,7 +21,7 @@ int main(void)
     game.Init();
     while(1) {
         // Update
-        Inputs::Update();
+        Engine::Inputs::Update();
         game.Update();
         // Render
         game.Render();
