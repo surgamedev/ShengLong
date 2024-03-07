@@ -6,19 +6,22 @@
 
 int main(void)
 {
-    timer_init();
-    Engine::Inputs::Init();
-    display_init(RESOLUTION_320x240, DEPTH_16_BPP, 2, GAMMA_NONE, FILTERS_RESAMPLE);
-    console_init();
-    Game game;
+    debug_init_usblog();
 
+    console_init();
+    console_set_debug(true);
+    console_set_render_mode(RENDER_MANUAL);
+
+    timer_init();
+    
+    display_init(RESOLUTION_320x240, DEPTH_16_BPP, 2, GAMMA_NONE, ANTIALIAS_RESAMPLE_FETCH_ALWAYS);
     rdpq_init();
     gl_init();
 
-    debug_init_usblog();
-    console_set_debug(true);
     surface_t zbuffer = surface_alloc(FMT_RGBA16, display_get_width(), display_get_height());
 
+    Game game;
+    Engine::Inputs::Init();
     game.Init();
     while(1) {
         // Update
